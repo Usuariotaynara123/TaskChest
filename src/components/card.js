@@ -1,4 +1,4 @@
-class Card extends HTMLElement{
+export default class Card extends HTMLElement{
     constructor(category, status = false, term, tittle, descricao){
         super();
         this.category = category;
@@ -47,7 +47,7 @@ class Card extends HTMLElement{
                         ${this.descricao}
                     </p>
                 </div>
-                
+
                 <div class="card-footer container-fluid d-flex justify-content-between bg-${this.category} text-white rounded-0 align-items-center">
                     <button type="button" class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="18" viewBox="0 0 14 18" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.96148 0.472628C2.62766 0.161568 2.18613 -0.00777501 1.72992 0.000274354C1.2737 0.00832372 0.838422 0.193138 0.51578 0.51578C0.193138 0.838422 0.00832372 1.2737 0.000274354 1.72992C-0.00777501 2.18613 0.161568 2.62766 0.472628 2.96148L4.51115 7L0.472628 11.0385C0.161568 11.3723 -0.00777501 11.8139 0.000274354 12.2701C0.00832372 12.7263 0.193138 13.1616 0.51578 13.4842C0.838422 13.8069 1.2737 13.9917 1.72992 13.9997C2.18613 14.0078 2.62766 13.8384 2.96148 13.5274L7 9.48885L11.0385 13.5274C11.3723 13.8384 11.8139 14.0078 12.2701 13.9997C12.7263 13.9917 13.1616 13.8069 13.4842 13.4842C13.8069 13.1616 13.9917 12.7263 13.9997 12.2701C14.0078 11.8139 13.8384 11.3723 13.5274 11.0385L9.48885 7L13.5274 2.96148C13.8384 2.62766 14.0078 2.18613 13.9997 1.72992C13.9917 1.2737 13.8069 0.838422 13.4842 0.51578C13.1616 0.193138 12.7263 0.00832372 12.2701 0.000274354C11.8139 -0.00777501 11.3723 0.161568 11.0385 0.472628L7 4.51115L2.96148 0.472628Z" fill="white"/></svg></button>
                     <time></time>

@@ -1,5 +1,22 @@
 @import url(../style/global.css);
 
+@keyframes show{
+    from { right: -32vw; }
+    to { right: 16px; }
+}
+
+task-manager{
+    position: fixed;
+    animation: show 1s;
+    animation-fill-mode: forwards;
+}
+
+login-section{
+    position: fixed;
+    animation: show 1s;
+    animation-fill-mode: forwards;
+}
+
 .bg-navbar-color{
     background-color: #2D2D2D;
 }
