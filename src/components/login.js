@@ -46,7 +46,7 @@ export default class LoginSection extends HTMLElement{
             .catch(error => console.error('Erro:', error));
         });
 
-        shadow.querySelector('#inputUsername').focus();
+        shadow.querySelector('#inputUsername').focus(); //Fazer o focus na div;
 
         document.querySelector('login-section').addEventListener('focusout', event => {
             event.currentTarget.remove();

@@ -7,12 +7,14 @@
 
 task-manager{
     position: fixed;
+    top: 88px;
     animation: show 1s;
     animation-fill-mode: forwards;
 }
 
 login-section{
     position: fixed;
+    top: 88px;
     animation: show 1s;
     animation-fill-mode: forwards;
 }
