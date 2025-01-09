@@ -47,10 +47,6 @@ p{
     text-align: justify;
 }
 
-.h-100vh{
-    height: 100vh;
-}
-
 .shadow-sections{
     box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
