@@ -4,7 +4,7 @@ const Router = require('./api/routes/router.js')
 class API{
     constructor(){
         this.app = express();
-        this.port = 3000;
+        this.port = 80;
 
         this.app.use('/', new Router());
 

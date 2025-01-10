@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Usuariotaynara123/TaskChest#readme",
   "devDependencies": {
+    "axios": "^1.7.9",
     "express": "^4.21.2",
     "pg": "^8.13.1",
     "pg-hstore": "^2.3.4",

@@ -2,6 +2,10 @@ import Card from "/components/card.js";
 import TaskManager from "/components/taskManager.js";
 import LoginSection from "/components/login.js";
 
+document.createCard = () => {
+    document.querySelector('main').appendChild(new Card())
+}
+
 document.querySelector('#addTask').addEventListener('click', () => {
     if(!document.querySelector('body').innerHTML.includes('task-manager')){
         document.querySelector('body').appendChild(new TaskManager('Anote', '','', '', '', ''));

@@ -68,27 +68,27 @@ export default class TaskManager extends HTMLElement{
                 </section>
             </main>
         `
+        const tittle = shadow.querySelector('#inputTittle')
+        const description = shadow.querySelector('#inputDesc')
+        const term = shadow.querySelector('#inputTerm')
+        
+        tittle.value = this.tittle;
+        description.value = this.description;
+        term.value = this.term;
 
-        shadow.querySelector('#inputTittle').value = this.tittle;
-        shadow.querySelector('#inputDesc').value = this.description;
-        shadow.querySelector('#inputTerm').value = this.term;
         try{ shadow.querySelector('#radio' + this.category).checked = true; }catch(error){}
 
-        shadow.getElementById('taskManagement').addEventListener('submit', event => {
+        shadow.querySelector('#taskManagement').addEventListener('submit', async event => {
             event.preventDefault();
-          
-            fetch('/api/addData', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ })
-            })
-            .then(response => response.json())
-            .then(data => {
-              
-            })
-            .catch(error => console.error('Erro:', error));
+
+           let response = await axios.post('/task/create', {
+                "tittle": tittle.value,
+                "description": description.value,
+                "term": term.value,
+                "category":  "outros"  
+           });
+
+           document.createCard();
         });
 
         shadow.querySelector('#inputTittle').focus();
