@@ -2,12 +2,19 @@ const express = require('express');
 const { Tarefa } = require('../models/database');
 
 async function createTask(req, res) {
-    let currentTask = await Tarefa.create({titulo: req.body.tittle, descrição: req.body.description, prazo: req.body.term, CategoriaNome: req.body.category, status: 0})
-    res.send(currentTask);
+    try{
+        let currentTask = await Tarefa.create({titulo: req.body.tittle, descricao: req.body.description, prazo: req.body.term, CategoriaNome: req.body.category, status: 0, UsuarioUsername: req.params.id})
+        res.send(currentTask);
+    }catch(error){ 
+        res.send(error.name) 
+    }
 }
 
 async function getAllTasks(req, res){
-    res.send(`Estou vivo, ${req.params}`);
+    let userTaskLists = await Tarefa.findAll({where: {
+         UsuarioUsername: req.params.id
+    }});
+    res.send(userTaskLists);
 }
 
 module.exports = { getAllTasks, createTask };

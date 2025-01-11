@@ -1,11 +1,12 @@
 export default class Card extends HTMLElement{
-    constructor(category, status = false, term, tittle, descricao){
+    constructor(category, status = false, term, tittle, description, taskId){
         super();
         this.category = category;
         this.status = status;
         this.term = term;
-        this.descricao = descricao;
+        this.description = description;
         this.tittle = tittle;
+        this.taskId = taskId;
 
         let iconConcluded = '<g fill="none" fill-rule="evenodd"><path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="currentColor" d="M21.546 5.111a1.5 1.5 0 0 1 0 2.121L10.303 18.475a1.6 1.6 0 0 1-2.263 0L2.454 12.89a1.5 1.5 0 1 1 2.121-2.121l4.596 4.596L19.424 5.111a1.5 1.5 0 0 1 2.122 0"/></g>'
         let iconEstudos = '<path d="M31 8.80768L16 1.29999L1 8.80768L16 16.3154L31 8.80768ZM31 8.80768V16.3154" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.625 12.5615V21.9461C6.625 21.9461 7.47812 25.7 16 25.7C24.5238 25.7 25.375 21.9461 25.375 21.9461V12.5615" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
@@ -44,7 +45,7 @@ export default class Card extends HTMLElement{
                         ${this.tittle}
                     </h5>
                     <p class="card-text">
-                        ${this.descricao}
+                        ${this.description}
                     </p>
                 </div>
 

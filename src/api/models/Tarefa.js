@@ -6,7 +6,7 @@ class Tarefa extends Model {}
 Tarefa.init(
     {
         titulo: DataTypes.STRING,
-        descrição: DataTypes.STRING,
+        descricao: DataTypes.STRING,
         prazo: DataTypes.DATEONLY,
         status: DataTypes.BOOLEAN,
     },

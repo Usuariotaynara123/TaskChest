@@ -2,8 +2,22 @@ import Card from "/components/card.js";
 import TaskManager from "/components/taskManager.js";
 import LoginSection from "/components/login.js";
 
-document.createCard = () => {
-    document.querySelector('main').appendChild(new Card())
+window.addEventListener('load', async () => {
+    if(window.location.pathname != '/'){ //Se o usuário estiver logado.
+        const axiosContext = axios.create({baseURL:window.location.href});
+
+        let response = await axiosContext.post('/task/getUserTasks');
+
+        console.log(response)
+
+        response.data.forEach(task => {
+            document.createCard(task)
+        });
+    }
+});
+
+document.createCard = (task) => {
+    document.querySelector('main').appendChild(new Card(task.CategoriaNome, task.status, task.prazo, task.titulo, task.descricao, task.id));
 }
 
 document.querySelector('#addTask').addEventListener('click', () => {
