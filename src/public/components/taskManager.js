@@ -1,7 +1,7 @@
 import Card from "./card.js";
 
 export default class TaskManager extends HTMLElement{
-    constructor(action, id, tittle = '', description = '', term = '', category = ''){
+    constructor(action, id, tittle = '', description = '', term = '', category = '', status = false){
         super();
 
         this.action = action;
@@ -11,6 +11,7 @@ export default class TaskManager extends HTMLElement{
         this.description = description;
         this.term = term;
         this.category = category;
+        this.status = status;
     }
 
     connectedCallback() {
@@ -62,36 +63,61 @@ export default class TaskManager extends HTMLElement{
                                     </label>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary w-50 h-25">Confirmar</button>
+                            <div>
+                                <button type="submit" class="btn btn-primary ">Confirmar</button>
+                                <div class="mt-4 form-check">
+                                    <input type="checkbox" class="form-check-input" id="concluida">
+                                    <label class="form-check-label text-white" for="concluida">Concluída?</label>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </section>
             </main>
         `
-        const tittle = shadow.querySelector('#inputTittle')
-        const description = shadow.querySelector('#inputDesc')
-        const term = shadow.querySelector('#inputTerm')
+        const tittle = shadow.querySelector('#inputTittle');
+        const description = shadow.querySelector('#inputDesc');
+        const term = shadow.querySelector('#inputTerm');
+        const concluded = shadow.querySelector('#concluida');
         
         
         tittle.value = this.tittle;
         description.value = this.description;
         term.value = this.term;
+        concluded.checked = this.status;
         try{ shadow.querySelector('#radio' + this.category).checked = true; }catch(error){}
         
         const axiosContext = axios.create({baseURL:window.location.href});
 
         shadow.querySelector('#taskManagement').addEventListener('submit', async event => {
             event.preventDefault();
+
+            let response = undefined;
             
+            if(!this.id){
+                response = await axiosContext.post('/task/create', {
+                    "tittle": tittle.value,
+                    "description": description.value,
+                    "term": term.value,
+                    "category":  shadow.querySelector('input[name="category"]:checked').value,
+                    "status": concluded.checked
+                });
+                document.createCard(response.data);
+            }
+            else{//Se houver id, ou seja, se a tarefa estiver sendo editada
+                response = await axiosContext.put('/task/edit', {
+                    "id": this.id,
+                    "tittle": tittle.value,
+                    "description": description.value,
+                    "term": term.value,
+                    "category":  shadow.querySelector('input[name="category"]:checked').value,
+                    "status": concluded.checked 
+                });
 
-            let response = await axiosContext.post('/task/create', {
-                "tittle": tittle.value,
-                "description": description.value,
-                "term": term.value,
-                "category":  shadow.querySelector('input[name="category"]:checked').value  
-            });
-
-            document.createCard(response.data);
+                document.querySelector(`task-card[tarefa="${this.id}"]`).remove();
+                document.createCard(response.data);
+                this.remove()
+            }
             tittle.value = '';
             description.value = '';
             term.value = '';

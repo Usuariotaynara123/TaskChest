@@ -35,7 +35,7 @@ export default class LoginSection extends HTMLElement{
                     const login = shadow.querySelector('#inputUsername');
                     const password = shadow.querySelector('#inputPassword');
                     
-                    await axios.post('/login/sing-up', {
+                    await axios.post('/login/sing-up-in', {
                         "username": login.value,
                         "password": password.value,
                     }).then(async response => window.location.href = response.data);

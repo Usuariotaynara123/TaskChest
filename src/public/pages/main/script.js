@@ -8,8 +8,6 @@ window.addEventListener('load', async () => {
 
         let response = await axiosContext.post('/task/getUserTasks');
 
-        console.log(response)
-
         response.data.forEach(task => {
             document.createCard(task)
         });
