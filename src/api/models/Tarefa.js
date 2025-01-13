@@ -13,7 +13,6 @@ Tarefa.init(
     {
         sequelize: database,
         timestamps: false,
-        schema: 'taskChest'
     }
 );
 

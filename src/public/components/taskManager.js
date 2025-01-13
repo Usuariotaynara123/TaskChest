@@ -28,7 +28,7 @@ export default class TaskManager extends HTMLElement{
 
                     <form class="d-flex justify-content-center w-50 flex-column ms-5" id="taskManagement">
                         <label for="inputTittle" class="form-label text-white">Título</label>
-                        <input class="form-control" type="text" id="inputTittle">
+                        <input class="form-control" type="text" id="inputTittle" autocomplete="off">
 
                         <label for="inputDesc" class="form-label text-white">descricao</label>
                         <textarea class="form-control" id="inputDesc" rows="5" style="resize: none; width: 20vw;"></textarea>

@@ -13,7 +13,6 @@ Categoria.init(
     {
         sequelize: database,
         timestamps: false,
-        schema: 'taskChest'
     }
 )
 

@@ -18,7 +18,7 @@ async function singUpIn(req, res) {
                     res.send(`/${currentUser.username}`);
                 }
                 else{
-                    res.send('')
+                    res.send('');
                 }
         }
     }

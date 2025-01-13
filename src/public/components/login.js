@@ -19,7 +19,7 @@ export default class LoginSection extends HTMLElement{
 
                         <form class="d-flex justify-content-center w-50 flex-column" id="login">
                             <label for="inputUsername" class="form-label text-white">Username</label>
-                            <input class="form-control" type="text" id="inputUsername" placeholder="Usuário...">
+                            <input class="form-control" type="text" id="inputUsername" placeholder="Usuário..." autocomplete="off">
 
                             <label for="inputPassword" class="form-label text-white">Senha</label>
                             <input type="password" id="inputPassword" class="form-control mb-4" aria-describedby="passwordHelpBlock">

@@ -1,6 +1,6 @@
 const { Sequelize } = require('sequelize');
 
-const database = new Sequelize('postgres', 'postgres', '1234', {host: 'localhost', dialect: 'postgres'} );
+const database = new Sequelize(process.env.DATABASE_URL, { dialect: 'postgres'});
 
 module.exports = database;
 
@@ -14,6 +14,6 @@ Tarefa.belongsTo(Usuario);
 Categoria.hasMany(Tarefa, {foreignKey: 'CategoriaNome'});
 Tarefa.belongsTo(Categoria, {foreignKey: 'CategoriaNome'});
 
-database.sync(/* {force: true} */).then(console.log('\n Banco de dados sincronizado!'))//.then(async () => { await Categoria.bulkCreate([ { nome: 'estudos' }, { nome: 'trabalho' }, { nome: 'dia-a-dia' }, { nome: 'outros' }]) });
+database.sync({force: true}).then(console.log('\n Banco de dados sincronizado!')).then(async () => { await Categoria.bulkCreate([ { nome: 'estudos' }, { nome: 'trabalho' }, { nome: 'dia-a-dia' }, { nome: 'outros' }]) });
 
 module.exports = { Usuario, Tarefa, Categoria}
