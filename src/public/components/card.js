@@ -83,7 +83,7 @@ export default class Card extends HTMLElement{
         });
 
         shadow.querySelector('#delete-task').addEventListener('click', async () => {
-            const resp = confirm('Deltar tarefa?');
+            const resp = confirm('Deletar tarefa?');
             if(resp){
                 let response = await axiosContext.post('/task/delete', {
                     "id" : this.taskId

@@ -19,8 +19,15 @@ document.createCard = (task) => {
 }
 
 document.querySelector('#addTask').addEventListener('click', () => {
-    if(!document.querySelector('body').innerHTML.includes('task-manager')){
-        document.querySelector('body').appendChild(new TaskManager('Anote', '','', '', '', ''));
+    if(window.location.pathname != '/'){
+        if(!document.querySelector('body').innerHTML.includes('task-manager') ){
+            document.querySelector('body').appendChild(new TaskManager('Anote', '','', '', '', ''));
+        }
+    }
+    else{
+        if(!document.querySelector('body').innerHTML.includes('login-section')){
+            document.querySelector('body').appendChild(new LoginSection());
+        }
     }
 });
 
