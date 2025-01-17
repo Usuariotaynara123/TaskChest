@@ -27,7 +27,7 @@ async function editTask(req, res) {
         }
     );
 
-    let userEditTask = await Tarefa.findByPk(req.body.id)
+    let userEditTask = await Tarefa.findByPk(req.body.id);
     res.send(userEditTask);
 }
 

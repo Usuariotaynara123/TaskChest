@@ -6,7 +6,7 @@ export default class LoginSection extends HTMLElement{
     connectedCallback() {
         const shadow = this.attachShadow({mode:'closed'});
         const url = new URL(window.location.href);
-        if(url.pathname == '/'){
+        if(url.pathname == '/'){//Testa se já tem um usuário logado
             shadow.innerHTML = `
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
                 <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
@@ -30,7 +30,7 @@ export default class LoginSection extends HTMLElement{
                     </section>
                 </main>
                 `
-                shadow.getElementById('login').addEventListener('submit', async event => {
+                shadow.getElementById('login').addEventListener('submit', async event => { //Clicar no botão de login
                     event.preventDefault();
                     const login = shadow.querySelector('#inputUsername');
                     const password = shadow.querySelector('#inputPassword');
@@ -61,7 +61,7 @@ export default class LoginSection extends HTMLElement{
         }
         shadow.querySelector('main').focus();
 
-        document.querySelector('login-section').addEventListener('focusout', event => {
+        document.querySelector('login-section').addEventListener('focusout', event => { // Desaparece se clicar fora
             event.currentTarget.remove();
         });
     }

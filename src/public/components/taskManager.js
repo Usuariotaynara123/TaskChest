@@ -116,7 +116,7 @@ export default class TaskManager extends HTMLElement{
 
                 document.querySelector(`task-card[tarefa="${this.id}"]`).remove();
                 document.createCard(response.data);
-                this.remove()
+                this.remove();
             }
             tittle.value = '';
             description.value = '';
@@ -125,7 +125,7 @@ export default class TaskManager extends HTMLElement{
 
         shadow.querySelector('main').focus();
 
-        document.querySelector('task-manager').addEventListener('focusout', event => {
+        document.querySelector('task-manager').addEventListener('focusout', event => { // Desaparece se clicar fora
             event.currentTarget.remove();
         });
           

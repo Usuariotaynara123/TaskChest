@@ -1,14 +1,14 @@
 import TaskManager from "/components/taskManager.js";
 
 export default class Card extends HTMLElement{
-    constructor(category, status = false, term, tittle, description, taskId){
+    constructor(category, status = false, term, tittle, description, taskId){ // Recebe as informações da tarefa e aloca em variáveis
         super();
         this.taskId = taskId;
         this.tittle = tittle;
         this.description = description;
-        this.term = term;
+        this.term = term;//prazo
         this.category = category;
-        this.status = status;
+        this.status = status;// true = concluida, false = pendente
 
         let iconConcluded = '<g fill="none" fill-rule="evenodd"><path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="currentColor" d="M21.546 5.111a1.5 1.5 0 0 1 0 2.121L10.303 18.475a1.6 1.6 0 0 1-2.263 0L2.454 12.89a1.5 1.5 0 1 1 2.121-2.121l4.596 4.596L19.424 5.111a1.5 1.5 0 0 1 2.122 0"/></g>'
         let iconPending = '<path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0"/><path d="M12 7v5l3 3"/>'
@@ -44,7 +44,7 @@ export default class Card extends HTMLElement{
             <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
             <link rel="stylesheet" href="/style/global.css">
 
-            <div class="card text-center border-${this.category} g-col-1 col-height" style='max-width: 22vw'>
+            <div class="card text-center border-${this.category /* dependendo da categoria as cores mudam */} g-col-1 col-height" style='max-width: 22vw'>
                 <div class="card-header container-fluid d-flex bg-${this.category} text-white rounded-0 align-items-center justify-content-between">
                     <div class="d-flex align-items-center">
                         <svg id="icon-var" xmlns="http://www.w3.org/2000/svg" width="32" height="27" viewBox="0 0 32 27" fill="none">${this.icons[this.category]}</svg></button>
@@ -74,15 +74,15 @@ export default class Card extends HTMLElement{
         }
 
         shadow.querySelector('time').innerHTML = this.formatarData(this.term);
-        this.setAttribute('tarefa', this.taskId);
+        this.setAttribute('tarefa', this.taskId);// Atribui o id da tarefa ao elemento task-card
         
         const axiosContext = axios.create({baseURL:window.location.href});
 
-        shadow.querySelector('#edit-task').addEventListener('click', () => {
+        shadow.querySelector('#edit-task').addEventListener('click', () => { // Clicar no botão de editar
             document.querySelector('body').appendChild(new TaskManager('Edite', this.taskId, this.tittle, this.description, this.term, this.category, this.status));
         });
 
-        shadow.querySelector('#delete-task').addEventListener('click', async () => {
+        shadow.querySelector('#delete-task').addEventListener('click', async () => {// Clicar no botão de deletar
             const resp = confirm('Deletar tarefa?');
             if(resp){
                 let response = await axiosContext.post('/task/delete', {
